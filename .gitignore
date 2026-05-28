@@ -1,0 +1,87 @@
+# ============================================================
+# SECRETS & CREDENTIALS — JANGAN PERNAH DI-COMMIT!
+# ============================================================
+.env
+.env.*
+!.env.example
+
+# Kubernetes secrets (pakai .example saja yang di-commit)
+*secret.yaml
+!*secret.yaml.example
+
+# AWS credentials
+.aws/
+*.pem
+*.key
+
+# kubeconfig (berisi credentials cluster)
+kubeconfig
+kubeconfig.*
+.kube/
+
+# ============================================================
+# TERRAFORM
+# ============================================================
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.tfvars.example
+.terraform.lock.hcl
+terraform.log
+
+# ============================================================
+# PYTHON
+# ============================================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ============================================================
+# DOCKER
+# ============================================================
+# Jangan ignore Dockerfile — itu harus di-commit
+# Ignore build artifacts saja
+
+# ============================================================
+# IDE & OS
+# ============================================================
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ============================================================
+# LOGS & TEMP
+# ============================================================
+*.log
+*.tmp
+*.temp
+/tmp/
+
+# ============================================================
+# HELM
+# ============================================================
+# Chart dependencies yang di-download
+charts/
+*.tgz
+
+
+# personal
+CLAUDE.md
+hasil-*
