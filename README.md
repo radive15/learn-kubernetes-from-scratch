@@ -31,7 +31,7 @@ This repo documents a hands-on Kubernetes learning journey, from core concepts t
 - [x] Deployment & ReplicaSet
 - [x] Service — ClusterIP, NodePort, LoadBalancer
 - [x] Namespace — isolate dev/staging environments
-- [ ] ConfigMap & Secret
+- [x] ConfigMap & Secret
 
 **Checkpoint**: nginx on local Kubernetes — Deployment + Service + ConfigMap + Secret
 
