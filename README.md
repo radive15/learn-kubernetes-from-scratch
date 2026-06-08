@@ -24,13 +24,13 @@ This repo documents a hands-on Kubernetes learning journey, from core concepts t
 ### Phase 1 — Kubernetes Local: Core Concepts `[LOCAL]` ✅
 > Understand core Kubernetes with hands-on practice
 
-- [ ] Enable Kubernetes — Docker Desktop → Settings → Kubernetes → Enable
-- [ ] Verify: `kubectl cluster-info` & `kubectl get nodes`
-- [ ] Pod, Node, Cluster — difference from plain Docker containers
-- [ ] First YAML manifest: deploy a simple Pod
-- [ ] Deployment & ReplicaSet
-- [ ] Service — ClusterIP, NodePort, LoadBalancer (direct access via `localhost`, no port-forward needed)
-- [ ] Namespace — isolate dev/staging environments
+- [x] Enable Kubernetes — Docker Desktop → Settings → Kubernetes → Enable
+- [x] Verify: `kubectl cluster-info` & `kubectl get nodes`
+- [x] Pod, Node, Cluster — difference from plain Docker containers
+- [x] First YAML manifest: deploy a simple Pod
+- [x] Deployment & ReplicaSet
+- [x] Service — ClusterIP, NodePort, LoadBalancer
+- [x] Namespace — isolate dev/staging environments
 - [ ] ConfigMap & Secret
 
 **Checkpoint**: nginx on local Kubernetes — Deployment + Service + ConfigMap + Secret
@@ -168,13 +168,17 @@ kubectl apply -f k8s/
 # Verify
 kubectl get all -n dev
 
-# Access app directly via NodePort (no port-forward needed on Docker Desktop)
-# If service uses NodePort 30080:
-# Open: http://localhost:30080
+# Access app via port-forward (reliable on Docker Desktop Windows)
+kubectl port-forward service/<service-name> 8080:80 -n dev
+# Open: http://localhost:8080
 
-# Or if service uses LoadBalancer:
-kubectl get svc -n dev
-# EXTERNAL-IP will show "localhost" — access directly on the listed port
+# Note: On Docker Desktop v29+ on Windows, LoadBalancer EXTERNAL-IP resolves to an
+# internal WSL2 IP (e.g. 172.19.x.x), not "localhost" — not directly accessible
+# from Windows host. Use port-forward for local browser access.
+# On EKS, LoadBalancer will get a real external IP via AWS ALB — no port-forward needed.
+
+# Test service routing from inside the cluster (no port-forward needed)
+kubectl exec -it -n dev deployment/<deployment-name> -- curl http://<service-name>.<namespace>.svc.cluster.local
 ```
 
 ### Deploy via Helm (Phase 3)
