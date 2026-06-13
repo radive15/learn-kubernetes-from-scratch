@@ -20,6 +20,10 @@ spec:
           image: nginx:1.27
           ports:
             - containerPort: 80
+          volumeMounts:
+            - name: nginx-html       # harus match dengan nama volume di bawah
+              mountPath: /usr/share/nginx/html   # folder default nginx untuk serve static file
+
           env:
             - name: APP_ENV
               valueFrom:
@@ -41,3 +45,7 @@ spec:
                 secretKeyRef:
                   name: nginx-secret
                   key: API_KEY
+      volumes:
+        - name: nginx-html
+          persistentVolumeClaim:
+            claimName: nginx-html-pvc   # harus match nama PVC yang sudah kamu buat

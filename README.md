@@ -40,7 +40,7 @@ This repo documents a hands-on Kubernetes learning journey, from core concepts t
 ### Phase 2 — Kubernetes Local: Intermediate `[LOCAL]` ✅
 > Storage, health checks, autoscaling, observability
 
-- [ ] Persistent Volume & PVC
+- [x] Persistent Volume & PVC
 - [ ] Startup, liveness & readiness probe
 - [ ] Resource requests & limits
 - [ ] Ingress + Nginx Ingress Controller
