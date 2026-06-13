@@ -43,7 +43,7 @@ This repo documents a hands-on Kubernetes learning journey, from core concepts t
 - [x] Persistent Volume & PVC
 - [x] Startup, liveness & readiness probe
 - [x] Resource requests & limits
-- [ ] Ingress + Nginx Ingress Controller
+- [x] Ingress + Nginx Ingress Controller
 - [ ] In-cluster DNS
 - [ ] Horizontal Pod Autoscaler (HPA)
 - [ ] StatefulSet — PostgreSQL with automatic PVC
