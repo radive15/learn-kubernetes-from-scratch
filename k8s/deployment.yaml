@@ -20,9 +20,33 @@ spec:
           image: nginx:1.27
           ports:
             - containerPort: 80
+          resources:
+            requests:               # minimum yang dijamin scheduler alokasikan
+              cpu: "50m"            # 50m = 0.05 CPU core — cukup untuk nginx idle
+              memory: "64Mi"
+            limits:                 # hard cap — lebih dari ini akan di-throttle (CPU) atau OOMKill (memory)
+              cpu: "200m"
+              memory: "128Mi"
+
           volumeMounts:
             - name: nginx-html       # harus match dengan nama volume di bawah
               mountPath: /usr/share/nginx/html   # folder default nginx untuk serve static file
+          startupProbe:             # tunggu nginx selesai start sebelum probe lain aktif
+            httpGet:
+              path: /
+              port: 80
+            failureThreshold: 6     # 6 x 5 detik = 30 detik maksimal startup
+            periodSeconds: 5
+          livenessProbe:            # restart container kalau nginx hang/tidak respons
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 10
+          readinessProbe:           # keluarkan dari Service endpoints kalau belum siap
+            httpGet:
+              path: /
+              port: 80
+            periodSeconds: 5
 
           env:
             - name: APP_ENV

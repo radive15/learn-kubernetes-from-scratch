@@ -41,8 +41,8 @@ This repo documents a hands-on Kubernetes learning journey, from core concepts t
 > Storage, health checks, autoscaling, observability
 
 - [x] Persistent Volume & PVC
-- [ ] Startup, liveness & readiness probe
-- [ ] Resource requests & limits
+- [x] Startup, liveness & readiness probe
+- [x] Resource requests & limits
 - [ ] Ingress + Nginx Ingress Controller
 - [ ] In-cluster DNS
 - [ ] Horizontal Pod Autoscaler (HPA)
